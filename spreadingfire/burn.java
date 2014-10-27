@@ -120,7 +120,6 @@ public class burn {
             }
              f.update(f.tree);
             
-            //cnt = cnt+1;
             Thread.sleep(100);
         } catch (Exception e) {
 
