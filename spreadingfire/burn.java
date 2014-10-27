@@ -109,10 +109,15 @@ public class burn {
             reset();
 
            
-//            if (!finish()) {
-//                cnt++;
-//                
-//            }
+            if(finish() == true){
+                if(addcnt == 0){
+                    addcnt++;
+                    cnt++;
+                }else{
+                }
+            }else{
+                   cnt++;
+            }
              f.update(f.tree);
             
             //cnt = cnt+1;
@@ -128,5 +133,8 @@ public class burn {
 
     public int getCnt() {
         return cnt;
+    }
+    public void setAddcnt(int addcnt) {
+        this.addcnt = addcnt;
     }
 }
