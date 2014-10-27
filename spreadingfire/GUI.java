@@ -282,6 +282,7 @@ public class GUI extends javax.swing.JFrame {
         forest.reset();
         // forest.update(tree);
         b.setCnt(0);
+        b.setAddcnt(0);
         jLabel6.setText("Step = 0");
         jLabel3.setText("---");
         numprob = 0;
