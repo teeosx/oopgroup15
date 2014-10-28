@@ -40,7 +40,7 @@ public class burn {
                     
                 }
             }
-        }if(!finish())cnt++;
+        }
     }
 
     private void north(int x, int y) {
