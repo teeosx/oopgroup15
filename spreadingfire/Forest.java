@@ -19,9 +19,9 @@ public class Forest extends JPanel {
     private int numTree;
     private int sizeCell;
     boolean ran = false;
-    //String probtree = "";
+    
     int numprobtree = 90;
-    //String probburning = "";
+    
     int numprobburning = 20;
     GUI g;
 
