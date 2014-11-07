@@ -6,6 +6,8 @@
 package spreadingfire;
 
 import com.sun.j3d.utils.scenegraph.io.state.com.sun.j3d.utils.behaviors.mouse.MouseBehaviorState;
+import java.awt.Desktop;
+import java.net.URL;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -235,6 +237,11 @@ public class GUI extends javax.swing.JFrame {
         jButton1.setText("Help");
         jButton1.setToolTipText("");
         jButton1.setBorderPainted(false);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -306,7 +313,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jRadioButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -465,6 +472,14 @@ public class GUI extends javax.swing.JFrame {
     private void probbuttonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_probbuttonMouseMoved
        jLabel7.setText("Set the probability");
     }//GEN-LAST:event_probbuttonMouseMoved
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        try 
+        {
+            Desktop.getDesktop().browse(new URL("https://github.com/teeosx/oopgroup15/wiki/Software-Documentation").toURI());
+        }           
+        catch (Exception e) {}
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
