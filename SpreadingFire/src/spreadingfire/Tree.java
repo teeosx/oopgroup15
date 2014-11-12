@@ -13,6 +13,8 @@ public class Tree {
     public static  final int EMPTY = 0;
     public static  final int TREE = 1;
     public static  final int BURN = 2;
+    public static  final int LIGHT = 3;
+    
     private int state;
     
     public Tree(){

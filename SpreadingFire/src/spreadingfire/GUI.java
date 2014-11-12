@@ -24,6 +24,8 @@ public class GUI extends javax.swing.JFrame {
     static Forest forest;
     String prob;
     int numprob;
+    String problight;
+    int numproblight;
     Fireforest fireforest;
     burn b;
     Tree[][] tree;
@@ -78,6 +80,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spreading a Fire\n");
@@ -231,7 +234,6 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Yuppy SC", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 153, 153));
-        jLabel7.setText("        ---");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/spreadingfire/Folders-OS-Default-Metro-icon.png"))); // NOI18N
         jButton1.setText("Help");
@@ -243,12 +245,19 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jRadioButton3.setText("Lightning OFF");
+        jRadioButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(827, Short.MAX_VALUE)
+                .addContainerGap(550, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,9 +277,6 @@ public class GUI extends javax.swing.JFrame {
                                 .addGap(113, 113, 113)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(150, 150, 150))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -288,6 +294,11 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(probbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(73, 73, 73))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jRadioButton3)
+                        .addGap(246, 246, 246)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addContainerGap())))
@@ -320,7 +331,9 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addGap(52, 52, 52)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton3))
                 .addGap(4, 4, 4)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -466,20 +479,44 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseMoved
 
     private void bresetMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bresetMouseMoved
-       jLabel7.setText("Reset the probability");
+        jLabel7.setText("Reset the probability");
     }//GEN-LAST:event_bresetMouseMoved
 
     private void probbuttonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_probbuttonMouseMoved
-       jLabel7.setText("Set the probability");
+        jLabel7.setText("Set the probability");
     }//GEN-LAST:event_probbuttonMouseMoved
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        try 
-        {
+        try {
             Desktop.getDesktop().browse(new URL("https://github.com/teeosx/oopgroup15/wiki/Software-Documentation").toURI());
-        }           
-        catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jRadioButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton3MouseClicked
+        try {
+            if(jRadioButton3.isSelected()){
+                jRadioButton3.setText("Lightning ON");
+            problight = JOptionPane.showInputDialog(null, "Input the probability of lightning");
+            numproblight = Integer.parseInt(problight);
+            repaint();
+            if (numproblight < 0 || numproblight > 100) {
+                    JOptionPane.showMessageDialog(null, "Error occur! Input only 0 - 100\n Now value set to 0");
+                    numproblight = 0;
+                }
+            }else{
+                jRadioButton3.setText("Lightning OFF");
+                numproblight = 0;
+                repaint();
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Plese insert only number");
+            jRadioButton3.setText("Lightning OFF");
+            repaint();
+        }
+
+    }//GEN-LAST:event_jRadioButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -534,6 +571,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JButton probbutton;
     // End of variables declaration//GEN-END:variables
@@ -544,6 +582,14 @@ public class GUI extends javax.swing.JFrame {
 
     public int getNumprobtree() {
         return numprobtree;
+    }
+
+    public int getNumproblight() {
+        return numproblight;
+    }
+
+    public void setNumproblight(int numproblight) {
+        this.numproblight = numproblight;
     }
 
     public int getNumprobburn() {

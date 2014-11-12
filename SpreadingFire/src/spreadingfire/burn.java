@@ -5,6 +5,8 @@
  */
 package spreadingfire;
 
+import java.awt.Color;
+
 /**
  *
  * @author Tee
@@ -16,6 +18,7 @@ public class burn {
     GUI g;
     int cnt;
     int addcnt;
+    int lightstep = 0;
 
     public boolean finish() {
         for (int i = 0; i < f.getNumTree(); i++) {
@@ -31,12 +34,21 @@ public class burn {
     public void search() {
         for (int i = 1; i < f.getNumTree() - 1; i++) {
             for (int j = 1; j < f.getNumTree() - 1; j++) {
+                lightstep++;
                 if (f.tree[i][j].getState() == 2 && check[i][j] == false) {
                     f.tree[i][j].setState(0);
                     north(i, j);
                     south(i, j);
                     west(i, j);
                     east(i, j);
+                    
+                    
+                    
+                }else if(f.tree[i][j].getState() == 1 && random(g.numproblight) == true){
+                    if(random(g.numproblight*g.numprob/100)== true){
+                    f.tree[i][j].setState(3);
+                    
+                    }
                     
                 }
             }
@@ -136,4 +148,5 @@ public class burn {
     public void setAddcnt(int addcnt) {
         this.addcnt = addcnt;
     }
+
 }

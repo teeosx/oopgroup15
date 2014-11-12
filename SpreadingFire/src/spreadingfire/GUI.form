@@ -45,7 +45,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="827" max="32767" attributes="0"/>
+              <EmptySpace pref="550" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -70,10 +70,6 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel6" min="-2" pref="207" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
@@ -96,6 +92,12 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="probbutton" min="-2" pref="238" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="246" max="-2" attributes="0"/>
+                      <Component id="jLabel6" min="-2" pref="207" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -135,7 +137,10 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-              <Component id="jLabel6" min="-2" pref="50" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel6" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -266,7 +271,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="        ---"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
@@ -283,6 +287,14 @@
       </AccessibilityProperties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lightning OFF"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jRadioButton3MouseClicked"/>
       </Events>
     </Component>
   </SubComponents>
