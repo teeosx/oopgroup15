@@ -36,7 +36,8 @@ public class GUI extends javax.swing.JFrame {
     int numprobburn;
     boolean onmouse = false;
     boolean lightningspread =false;
-
+    String direction;
+    String windlevel;
     public GUI() {
         initComponents();
         forest = new Forest();
@@ -575,12 +576,16 @@ public class GUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jRadioButton3MouseClicked
 
+    public String getDirection() {
+        return direction;
+    }
+
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
 
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        String direction = jComboBox1.getSelectedItem().toString();
+        direction = jComboBox1.getSelectedItem().toString();
         if (direction.equals("NORTH")) {
         //JOptionPane.showMessageDialog(null,"north");
         }
@@ -597,11 +602,11 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        String direction = jComboBox2.getSelectedItem().toString();
-        if (direction.equals("LOW")) {
+         windlevel = jComboBox2.getSelectedItem().toString();
+        if (windlevel.equals("LOW")) {
         //JOptionPane.showMessageDialog(null,"north");
         }
-        if (direction.equals("HIGH")){
+        if (windlevel.equals("HIGH")){
             
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
