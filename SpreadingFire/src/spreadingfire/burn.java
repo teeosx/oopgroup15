@@ -6,6 +6,7 @@
 package spreadingfire;
 
 import java.awt.Color;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -44,12 +45,15 @@ public class burn {
                 }else if(f.tree[i][j].getState() == 1 && random(g.numproblight) == true){
                     if(random(g.numproblight*g.numprob/100)== true){
                     f.tree[i][j].setState(2);
+                    
                     f.tree[i][j].setLight(true);
                     } 
                 }else if(f.tree[i][j].getLightstep() == 0){
                     f.tree[i][j].setLight(false);
-                }else if(f.tree[i][j].isLight() == true){
+                }else if(f.tree[i][j].isLight() == true && g.lightningspread == true){
+                    
                     f.tree[i][j].setLightstep(1);
+                    
                 }
             }
         }
