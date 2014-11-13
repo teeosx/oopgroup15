@@ -6,6 +6,7 @@
 package spreadingfire;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 /**
@@ -70,6 +71,9 @@ public class burn {
         if (f.tree[x][y - 1].getState() == 1 && random(g.numprob) == true) {
             f.tree[x][y - 1].setState(2);
             check[x][y - 1] = true;
+            if(g.getDirection().equals("NORTH")){
+                
+            }
         }       // north
     }
 
@@ -121,9 +125,11 @@ public class burn {
             while (!finish()) {
                 step();
             }
+            
 
         } catch (Exception e) {
         }
+        JOptionPane.showMessageDialog(null,"The trees had burned by " + getCnt()+" step");
     }
 
     public void step() {

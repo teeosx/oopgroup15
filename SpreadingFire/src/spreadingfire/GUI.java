@@ -449,8 +449,9 @@ public class GUI extends javax.swing.JFrame {
                     b.step();
                     jLabel6.setText("Step = " + String.valueOf(b.getCnt()));
                 }
-
+              
             }
+            
         };
         t.start();
     }//GEN-LAST:event_bstartMouseClicked
@@ -508,7 +509,7 @@ public class GUI extends javax.swing.JFrame {
                 numprobburn = 0;
             }
             if (numprobtree < 0 || numprobtree > 100) {
-                numprobtree = 1000;
+                numprobtree = 100;
             }
             this.setTitle("--- Random Mode Activated ---" + " ಥ‿ಥ Current Tree is " + numprobtree + " %" + " Burning " + numprobburn + " % ಥ‿ಥ");
             forest.reset();
