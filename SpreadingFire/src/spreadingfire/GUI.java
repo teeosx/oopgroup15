@@ -472,6 +472,10 @@ public class GUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
+    public String getWindlevel() {
+        return windlevel;
+    }
+
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
 //        
     }//GEN-LAST:event_jRadioButton2ActionPerformed
