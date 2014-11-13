@@ -46,7 +46,7 @@ public class Tree {
         return lightstep;
     }
 
-    public void setLightstep(int lightstep) {
+    public void LightstepDown(int lightstep) {
         this.lightstep -= lightstep;
     }
     

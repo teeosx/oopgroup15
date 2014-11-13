@@ -42,17 +42,24 @@ public class burn {
                     west(i, j);
                     east(i, j);
 
-                }else if(f.tree[i][j].getState() == 1 && random(g.numproblight) == true){
+                }else if(lighting == true && f.tree[i][j].getState() == 1 && random(g.numproblight) == true){
                     if(random(g.numproblight*g.numprob/100)== true){
-                    f.tree[i][j].setState(2);
+                      if(g.lightningspread == true){
+                      f.tree[i][j].setState(2);
+                      f.tree[i][j].setLight(true);
+                      }else{
+                      f.tree[i][j].setState(2);
+                      check[i][j] = true;
+                      }
+                    }
+                
                     
-                    f.tree[i][j].setLight(true);
-                    } 
                 }else if(f.tree[i][j].getLightstep() == 0){
                     f.tree[i][j].setLight(false);
+                    
                 }else if(f.tree[i][j].isLight() == true && g.lightningspread == true){
                     
-                    f.tree[i][j].setLightstep(1);
+                    f.tree[i][j].LightstepDown(1);
                     
                 }
             }
@@ -88,8 +95,8 @@ public class burn {
     }
 
     private boolean random(int a) {
-        int rnd = (int) (Math.random() * 100) ;
-        if (rnd < a) {
+        int rnd = (int) (Math.random() * 99 + 1) ;
+        if (rnd <= a) {
             return true;
         } else {
             return false;
