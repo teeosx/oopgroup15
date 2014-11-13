@@ -13,6 +13,8 @@ public class SpreadingFire  {
     public static void main(String[] args) {
        new GUI();
 
+       
+
     
     }
     

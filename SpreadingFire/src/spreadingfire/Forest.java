@@ -63,8 +63,6 @@ public class Forest extends JPanel {
                     g.setColor(Color.yellow);
                 } else if (tree[i][j].getState() == Tree.TREE) {
                     g.setColor(Color.green.darker());
-                } else if (tree[i][j].getState() == 3) {
-                    g.setColor(Color.blue.darker());
                 }else {
                     g.setColor(Color.RED);
                 }

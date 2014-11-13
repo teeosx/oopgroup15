@@ -251,6 +251,11 @@ public class GUI extends javax.swing.JFrame {
                 jRadioButton3MouseClicked(evt);
             }
         });
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -496,10 +501,11 @@ public class GUI extends javax.swing.JFrame {
     private void jRadioButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton3MouseClicked
         try {
             if(jRadioButton3.isSelected()){
+                b.lighting = true;
                 jRadioButton3.setText("Lightning ON");
-            problight = JOptionPane.showInputDialog(null, "Input the probability of lightning");
-            numproblight = Integer.parseInt(problight);
-            repaint();
+                problight = JOptionPane.showInputDialog(null, "Input the probability of lightning");
+                numproblight = Integer.parseInt(problight);
+                repaint();
             if (numproblight < 0 || numproblight > 100) {
                     JOptionPane.showMessageDialog(null, "Error occur! Input only 0 - 100\n Now value set to 0");
                     numproblight = 0;
@@ -517,6 +523,10 @@ public class GUI extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jRadioButton3MouseClicked
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     /**
      * @param args the command line arguments
