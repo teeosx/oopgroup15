@@ -38,6 +38,7 @@ public class GUI extends javax.swing.JFrame {
     boolean lightningspread =false;
     String direction;
     String windlevel;
+    boolean lightsound = false;
     public GUI() {
         initComponents();
         forest = new Forest();
@@ -88,6 +89,7 @@ public class GUI extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spreading a Fire\n");
@@ -289,6 +291,13 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel9.setText("Wind Level");
 
+        jToggleButton1.setText("SOUND");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -347,7 +356,9 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jRadioButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(jButton1))
         );
         layout.setVerticalGroup(
@@ -388,7 +399,8 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1)
                             .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton4))
+                            .addComponent(jRadioButton4)
+                            .addComponent(jToggleButton1))
                         .addGap(8, 8, 8))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -625,6 +637,14 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        if(jToggleButton1.isSelected()){
+            lightsound = true;
+        }else{
+            lightsound = false;
+        }
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -685,6 +705,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JSlider jSlider1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton probbutton;
     // End of variables declaration//GEN-END:variables
 

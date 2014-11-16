@@ -52,12 +52,14 @@ public class burn {
 
                     if (random(g.numproblight * g.numprob / 100) == true) {
                         if (g.lightningspread == true) {
+                            if(g.lightsound == true){
                             try {
                                 in = new FileInputStream(new File("/Users/Tee/GitHub/oopgroup15/SpreadingFire/src/spreadingfire/thunder-03.wav"));
                                 AudioStream audios = new AudioStream(in);
                                 AudioPlayer.player.start(audios);
                             } catch (Exception e) {
                                 JOptionPane.showMessageDialog(null, "FIle not found");
+                            }
                             }
                             f.tree[i][j].setState(2);
 
