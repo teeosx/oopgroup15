@@ -5,9 +5,12 @@
  */
 package spreadingfire;
 
-import java.awt.Color;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 /**
  *
@@ -34,6 +37,8 @@ public class burn {
     }
 
     public void search() {
+        InputStream in;
+
         for (int i = 1; i < f.getNumTree() - 1; i++) {
             for (int j = 1; j < f.getNumTree() - 1; j++) {
                 if (f.tree[i][j].getState() == 2 && check[i][j] == false && f.tree[i][j].isLight() == false) {
@@ -43,37 +48,44 @@ public class burn {
                     west(i, j);
                     east(i, j);
 
-                }else if(lighting == true && f.tree[i][j].getState() == 1 && random(g.numproblight) == true){
-                    if(random(g.numproblight*g.numprob/100)== true){
-                      if(g.lightningspread == true){
-                      f.tree[i][j].setState(2);
-                      f.tree[i][j].setLight(true);
-                      }else{
-                      f.tree[i][j].setState(2);
-                      check[i][j] = true;
-                      }
+                } else if (lighting == true && f.tree[i][j].getState() == 1 && random(g.numproblight) == true) {
+
+                    if (random(g.numproblight * g.numprob / 100) == true) {
+                        if (g.lightningspread == true) {
+                            try {
+                                in = new FileInputStream(new File("/Users/Tee/GitHub/oopgroup15/SpreadingFire/src/spreadingfire/thunder-03.wav"));
+                                AudioStream audios = new AudioStream(in);
+                                AudioPlayer.player.start(audios);
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(null, "FIle not found");
+                            }
+                            f.tree[i][j].setState(2);
+
+                            f.tree[i][j].setLight(true);
+                        } else {
+                            f.tree[i][j].setState(2);
+                            check[i][j] = true;
+                        }
                     }
-                
-                    
-                }else if(f.tree[i][j].getLightstep() == 0){
+
+                } else if (f.tree[i][j].getLightstep() == 0) {
                     f.tree[i][j].setLight(false);
-                    
-                }else if(f.tree[i][j].isLight() == true && g.lightningspread == true){
-                    
+
+                } else if (f.tree[i][j].isLight() == true && g.lightningspread == true) {
+
                     f.tree[i][j].LightstepDown(1);
-                    
+
                 }
             }
         }
     }
 
     private void north(int x, int y) {
+
         if (f.tree[x][y - 1].getState() == 1 && random(g.numprob) == true) {
             f.tree[x][y - 1].setState(2);
             check[x][y - 1] = true;
-            if(g.getDirection().equals("NORTH")){
-                
-            }
+
         }       // north
     }
 
@@ -99,12 +111,14 @@ public class burn {
     }
 
     private boolean random(int a) {
-        int rnd = (int) (Math.random() * 99 + 1) ;
+        int rnd = (int) (Math.random() * 99 + 1);
         if (rnd <= a) {
             return true;
+
         } else {
             return false;
         }
+
     }
 
     public void reset() {
@@ -125,11 +139,11 @@ public class burn {
             while (!finish()) {
                 step();
             }
-            
 
         } catch (Exception e) {
+
         }
-        JOptionPane.showMessageDialog(null,"The trees had burned by " + getCnt()+" step");
+
     }
 
     public void step() {
@@ -137,18 +151,17 @@ public class burn {
             search();
             reset();
 
-           
-            if(finish() == true){
-                if(addcnt == 0){
+            if (finish() == true) {
+                if (addcnt == 0) {
                     addcnt++;
                     cnt++;
-                }else{
+                } else {
                 }
-            }else{
-                   cnt++;
+            } else {
+                cnt++;
             }
-             f.update(f.tree);
-            
+            f.update(f.tree);
+
             Thread.sleep(100);
         } catch (Exception e) {
 
@@ -162,6 +175,7 @@ public class burn {
     public int getCnt() {
         return cnt;
     }
+
     public void setAddcnt(int addcnt) {
         this.addcnt = addcnt;
     }
