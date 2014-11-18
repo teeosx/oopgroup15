@@ -54,7 +54,7 @@ public class Forest extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+        //super.paintComponent(g);
         for (int i = 0; i < getNumTree(); i++) {
             for (int j = 0; j < getNumTree(); j++) {
                 int x = (i + 1) * getSizeCell(); //เก็บพิกัดของแต่ละต้น พิกัด x

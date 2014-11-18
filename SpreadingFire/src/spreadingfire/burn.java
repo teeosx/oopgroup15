@@ -16,6 +16,7 @@ public class burn {
     boolean lighting;
     boolean burntwo;
     boolean grow;
+    boolean stop;
     GUI g;
     int cnt;
     int addcnt;
@@ -25,7 +26,10 @@ public class burn {
     public boolean finish() {
         for (int i = 0; i < f.getNumTree(); i++) {
             for (int j = 0; j < f.getNumTree(); j++) {
-                if (f.tree[i][j].getState() >= 5 || (lighting == true && f.tree[i][j].getState() > 0 &&
+                if(stop == true){
+                    return true;
+                }
+                else if (f.tree[i][j].getState() >= 5 || (lighting == true && f.tree[i][j].getState() > 0 &&
                         f.tree[i][j].getState() < 5) || grow == true) {
                     return false;
                 }
@@ -35,6 +39,7 @@ public class burn {
     }
 
     public void search() {
+       
         for (int i = 1; i < f.getNumTree() - 1; i++) {
             for (int j = 1; j < f.getNumTree() - 1; j++) {
                
