@@ -72,8 +72,8 @@ public class burn {
     private void north(int x, int y) {
         if ("NORTH".equals(g.getDirection()) && windlevel > 0) {
 
-            if (f.tree[x][y - 1].getState() >= 1 && f.tree[x][y - 1].getState() < 5  
-                    && f.tree[x][y - 2].getState() >= 1 && f.tree[x][y - 2].getState() <= 1
+            if (f.tree[x][y - 1].getState() >= 1 && f.tree[x][y - 1].getState() < 5
+                    && f.tree[x][y - 2].getState() >= 1 && f.tree[x][y - 2].getState() < 5
                     && random(g.numprob) == true) {
 
                 set(x , y - 1);
@@ -204,7 +204,7 @@ public class burn {
                 }else{
                 if(check[x][y] == false)    
                    f.tree[x][y].setState(5);
-                   check[x][y] = true;
+                  check[x][y] = true;
                 
        }
     }
