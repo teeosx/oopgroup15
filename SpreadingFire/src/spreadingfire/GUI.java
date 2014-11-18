@@ -26,6 +26,7 @@ public class GUI extends javax.swing.JFrame {
     int numprob;
     String problight;
     int numproblight;
+    int numprobGrow;
     Fireforest fireforest;
     burn b;
     Tree[][] tree;
@@ -90,6 +91,8 @@ public class GUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spreading a Fire\n");
@@ -298,6 +301,20 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jRadioButton5.setText("GrowTree");
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton6.setText("StrongTree");
+        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -351,14 +368,18 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton6))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton4)
+                    .addComponent(jRadioButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(jButton1))
         );
         layout.setVerticalGroup(
@@ -391,7 +412,11 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 57, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton5)
+                            .addComponent(jRadioButton6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
@@ -404,7 +429,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(8, 8, 8))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(88, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jButton1.getAccessibleContext().setAccessibleName("helpbut");
@@ -620,10 +645,12 @@ public class GUI extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
          windlevel = jComboBox2.getSelectedItem().toString();
         if (windlevel.equals("LOW")) {
-        //JOptionPane.showMessageDialog(null,"north");
+         b.windlevel = 1;
         }
-        if (windlevel.equals("HIGH")){
-            
+        else if (windlevel.equals("HIGH")){
+         b.windlevel = 2;
+        }else{
+         b.windlevel = 0;   
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
@@ -644,6 +671,39 @@ public class GUI extends javax.swing.JFrame {
             lightsound = false;
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+         try {
+            if (jRadioButton5.isSelected()) {
+                b.grow = true;
+                jRadioButton5.setText("TreeGrow On");
+               String probgrow = JOptionPane.showInputDialog(null, "Input the probability of growTree",JOptionPane.QUESTION_MESSAGE);
+               b.numprobgrow = Integer.parseInt(probgrow);
+                repaint();
+                if (b.numprobgrow < 0 || b.numprobgrow > 100) {
+                    JOptionPane.showMessageDialog(null, "Error occur! Input only 0 - 100\n Now value set to 0");
+                    b.numprobgrow = 0;
+                }
+            } else {
+                jRadioButton5.setText("TreeGrow OFF");
+                b.numprobgrow = 0;
+                repaint();
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Plese insert only number");
+            jRadioButton5.setText("TreeGrow OFF");
+            repaint();
+        }
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
+
+    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+        if(jRadioButton6.isSelected()){
+            b.burntwo = true;
+        }else{
+            b.burntwo = false;
+        }
+    }//GEN-LAST:event_jRadioButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -704,6 +764,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton probbutton;

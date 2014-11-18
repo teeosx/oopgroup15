@@ -11,10 +11,13 @@ package spreadingfire;
  */
 public class Tree {
     public static  final int EMPTY = 0;
-    public static  final int TREE = 1;
-    public static  final int BURN = 2;
-    public boolean light ;
-    public int lightstep;
+    public static  final int TREE1 = 1;
+    public static  final int TREE2 = 2;
+    public static  final int TREE3 = 3;
+    public static  final int TREE4 = 4;
+    public static  final int BURN1 = 5;
+    public static  final int BURN2 = 6;
+    public int step;
     
     private int state;
 
@@ -22,9 +25,8 @@ public class Tree {
 
     
     public Tree(){
-        state = TREE;
-        light = false;
-        lightstep = 3;
+        state = TREE1;
+        step = 0;
     }
 
     public void setState(int state) {
@@ -34,20 +36,20 @@ public class Tree {
     public int getState() {
         return state;
     }
-       public boolean isLight() {
-        return light;
+
+
+    public int getstep() {
+        return step;
     }
 
-    public void setLight(boolean light) {
-        this.light = light;
+    public void stepDown(int step) {
+        this.step -= step;
     }
 
-    public int getLightstep() {
-        return lightstep;
+    public void setstep(int step) {
+        this.step += step;
     }
-
-    public void LightstepDown(int lightstep) {
-        this.lightstep -= lightstep;
+    public void stateUp(){
+        this.state += 1;
     }
-    
 }

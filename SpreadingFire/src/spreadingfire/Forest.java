@@ -61,10 +61,24 @@ public class Forest extends JPanel {
                 int y = (j + 1) * getSizeCell(); // พิกัด y
                 if (tree[i][j].getState() == 0) {
                     g.setColor(Color.yellow);
-                } else if (tree[i][j].getState() == Tree.TREE) {
-                    g.setColor(Color.green.darker());
+                } else if (tree[i][j].getState() > 0 && tree[i][j].getState() < 5 ) {
+                    if(tree[i][j].getState() == 1){
+                    g.setColor(new Color(193,254,25));
+                    }else if(tree[i][j].getState() == 2){
+                    g.setColor(new Color(143,232,0));
+                    }else if(tree[i][j].getState() == 3){
+                    g.setColor(new Color(126,172,0));
+                    }else{
+                    g.setColor(Color.GREEN.darker());
+                    }
                 }else {
-                    g.setColor(Color.RED);
+                    if(tree[i][j].getState() == 5){
+                    g.setColor(Color.red);
+                    }else{
+                    g.setColor(Color.red.darker());
+                    }
+                    
+                    
                 }
 
                 g.fillRect(x + 2, y + 2, getSizeCell() - 2, getSizeCell() - 2);
@@ -97,9 +111,9 @@ public class Forest extends JPanel {
                         tree[i][j].setState(0);
                     } else if (random(g.numprobtree)== true) {
                         if (random(g.numprobburn) == true) {
-                            tree[i][j].setState(2);
+                            tree[i][j].setState(5);
                         } else {
-                            tree[i][j].setState(1);
+                            tree[i][j].setState((int) (Math.random() * 4 + 1));
                         }
                     } else {
                         tree[i][j].setState(0);
@@ -107,10 +121,12 @@ public class Forest extends JPanel {
 
                 } else {
                     if (i == numTree / 2 && j == numTree / 2) {
-                        tree[i][j].setState(2);
+                        tree[i][j].setState(5);
                     }
-                    if (i == 0 || i == numTree - 1 || j == 0 || j == numTree - 1) {
+                    else if (i == 0 || i == numTree - 1 || j == 0 || j == numTree - 1) {
                         tree[i][j].setState(0);
+                    }else{
+                        tree[i][j].setState((int) (Math.random() * 4 + 1));
                     }
                 }
             }
@@ -150,4 +166,5 @@ public class Forest extends JPanel {
             return false;
         }
     }
+  
 }

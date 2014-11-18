@@ -22,7 +22,7 @@ public class Fireforest  {
                 tree[i][j] = new Tree();
                 //tree[i][j].setState(0);
                 if(i == forest.getNumTree()/2 && j == forest.getNumTree()/2) {
-                    tree[i][j].setState(2);
+                    tree[i][j].setState(5);
                 }
                 
                 if(i == 0 || i == forest.getNumTree()-1 || j == 0 || j == forest.getNumTree()-1){
