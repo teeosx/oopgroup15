@@ -16,21 +16,24 @@ public class Fireforest  {
     public Fireforest(Forest forest){
         this.forest = forest;
         tree = new Tree[forest.getNumTree()][forest.getNumTree()];
-        //System.out.println(forest.getNumTree());
+        
         for(int i = 0 ; i < forest.getNumTree(); i++){
             for(int j = 0 ; j < forest.getNumTree() ; j++){
+                
                 tree[i][j] = new Tree();
-                //tree[i][j].setState(0);
+                // crete burning tree
                 if(i == forest.getNumTree()/2 && j == forest.getNumTree()/2) {
                     tree[i][j].setState(5);
                 }
-                
-                if(i == 0 || i == forest.getNumTree()-1 || j == 0 || j == forest.getNumTree()-1){
+                // create border
+                else if(i == 0 || i == forest.getNumTree()-1 || j == 0 || j == forest.getNumTree()-1){
                     tree[i][j].setState(0);
                 } 
             }
         }
+            
         forest.update(tree);
+        
     }
   
 }

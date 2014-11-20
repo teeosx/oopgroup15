@@ -15,11 +15,8 @@ import javax.swing.JPanel;
 public class Forest extends JPanel {
 
     Tree tree[][];
-    private int numTree;
-    private int sizeCell;
+    private int numTree , sizeCell , numprobburn , numprobtree;
     private boolean ran;
-    private int numprobtree ;
-    private int numprobburn ;
     GUI g;
 
     public void setG(GUI g) {

@@ -101,7 +101,7 @@ public class GUI extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         jRadioButton5 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spreading a Fire\n");
@@ -323,10 +323,10 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton7.setText("Stop");
-        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
+        jToggleButton2.setText("STOP");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton7ActionPerformed(evt);
+                jToggleButton2ActionPerformed(evt);
             }
         });
 
@@ -354,8 +354,8 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton7)
-                        .addGap(22, 22, 22)
+                        .addComponent(jToggleButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButton6)
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButton5)
@@ -429,7 +429,7 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -442,8 +442,8 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton5)
                             .addComponent(jRadioButton6)
-                            .addComponent(jRadioButton7))
-                        .addGap(14, 14, 14))
+                            .addComponent(jToggleButton2))
+                        .addGap(9, 9, 9))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -633,7 +633,7 @@ public class GUI extends javax.swing.JFrame {
     private void jRadioButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton3MouseClicked
         try {
             if (jRadioButton3.isSelected()) {
-                b.lighting = true;
+                b.setLighting(true);
                 jRadioButton3.setText("Lightning ON");
                 problight = JOptionPane.showInputDialog(null, "Input the probability of lightning",JOptionPane.QUESTION_MESSAGE);
                 numproblight = Integer.parseInt(problight);
@@ -684,12 +684,12 @@ public class GUI extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
          windlevel = jComboBox2.getSelectedItem().toString();
         if (windlevel.equals("LOW")) {
-         b.windlevel = 1;
+         b.setWindlevel(1);
         }
         else if (windlevel.equals("HIGH")){
-         b.windlevel = 2;
+         b.setWindlevel(2);
         }else{
-         b.windlevel = 0;   
+         b.setWindlevel(0);  
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
@@ -717,18 +717,19 @@ public class GUI extends javax.swing.JFrame {
     private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
          try {
             if (jRadioButton5.isSelected()) {
-                b.grow = true;
+                b.setGrow(true);
                 jRadioButton5.setText("TreeGrow On");
                String probgrow = JOptionPane.showInputDialog(null, "Input the probability of growTree",JOptionPane.QUESTION_MESSAGE);
-               b.numprobgrow = Integer.parseInt(probgrow);
+               int numprobgrow = Integer.parseInt(probgrow);
+               b.setNumprobgrow(numprobgrow);
                 repaint();
-                if (b.numprobgrow < 0 || b.numprobgrow > 100) {
+                if (numprobgrow < 0 || numprobgrow > 100) {
                     JOptionPane.showMessageDialog(null, "Error occur! Input only 0 - 100\n Now value set to 0");
-                    b.numprobgrow = 0;
+                    b.setNumprobgrow(0);
                 }
             } else {
                 jRadioButton5.setText("TreeGrow OFF");
-                b.numprobgrow = 0;
+                b.setNumprobgrow(0);
                 repaint();
 
             }
@@ -741,20 +742,20 @@ public class GUI extends javax.swing.JFrame {
 
     private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
         if(jRadioButton6.isSelected()){
-            b.burntwo = true;
+            b.setBurntwo(true);
         }else{
-            b.burntwo = false;
-        }
+            b.setBurntwo(false);       
+            }           
     }//GEN-LAST:event_jRadioButton6ActionPerformed
 
-    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
-          if(jRadioButton7.isSelected()){
-            b.stop = true;
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+            if(jToggleButton2.isSelected()){
+            b.setStop(true);
         }else{
-            b.stop = false;
+            b.setStop(false);
         }
     
-    }//GEN-LAST:event_jRadioButton7ActionPerformed
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -817,9 +818,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JButton probbutton;
     // End of variables declaration//GEN-END:variables
 
