@@ -429,11 +429,11 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
                             .addComponent(jRadioButton3)
@@ -466,7 +466,6 @@ public class GUI extends javax.swing.JFrame {
         b.setAddcnt(0);
         jLabel6.setText("Step = 0");
         jLabel3.setText("---");
-        numprob = 0;
         jLabel5.setText("---");
         repaint();
     }//GEN-LAST:event_bresetActionPerformed
@@ -481,6 +480,7 @@ public class GUI extends javax.swing.JFrame {
 
         try {
             numprob = Integer.parseInt(prob);
+            b.setNumprob(numprob);
             if (numprob < 0 || numprob > 100) {
                 JOptionPane.showMessageDialog(null, "Error occur! Input only 0 - 100");
             } else {
@@ -637,14 +637,16 @@ public class GUI extends javax.swing.JFrame {
                 jRadioButton3.setText("Lightning ON");
                 problight = JOptionPane.showInputDialog(null, "Input the probability of lightning",JOptionPane.QUESTION_MESSAGE);
                 numproblight = Integer.parseInt(problight);
+                b.setNumproblight(numproblight);
                 repaint();
                 if (numproblight < 0 || numproblight > 100) {
                     JOptionPane.showMessageDialog(null, "Error occur! Input only 0 - 100\n Now value set to 0");
-                    numproblight = 0;
+                    b.setNumproblight(0);
                 }
             } else {
                 jRadioButton3.setText("Lightning OFF");
-                numproblight = 0;
+                b.setNumproblight(0);
+                b.setLighting(false);
                 repaint();
 
             }
@@ -667,16 +669,16 @@ public class GUI extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         direction = jComboBox1.getSelectedItem().toString();
         if (direction.equals("NORTH")) {
-        //JOptionPane.showMessageDialog(null,"north");
+          b.setWinddirection(1);
         }
         if (direction.equals("SOUTH")){
-            
+          b.setWinddirection(3);  
         }
         if (direction.equals("EAST")){
-            
+          b.setWinddirection(2);  
         }
         if (direction.equals("WEST")){
-            
+          b.setWinddirection(4);  
         }
 
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -696,10 +698,10 @@ public class GUI extends javax.swing.JFrame {
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
         // TODO add your handling code here:
         if(jRadioButton4.isSelected()){
-            lightningspread = true;
+            b.setLightingspread(true);
           
-        }if(jRadioButton4.isSelected()==false){
-        lightningspread = false;
+        }else{
+            b.setLightingspread(false);
         }
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
@@ -743,8 +745,10 @@ public class GUI extends javax.swing.JFrame {
     private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
         if(jRadioButton6.isSelected()){
             b.setBurntwo(true);
+            forest.setBurn(true);
         }else{
-            b.setBurntwo(false);       
+            b.setBurntwo(false); 
+            forest.setBurn(false);
             }           
     }//GEN-LAST:event_jRadioButton6ActionPerformed
 

@@ -13,15 +13,21 @@ import javax.swing.JPanel;
  * @author Tee
  */
 public class Forest extends JPanel {
-
+    
     Tree tree[][];
     private int numTree , sizeCell , numprobburn , numprobtree;
-    private boolean ran;
+    private boolean ran, burn;
     GUI g;
+  
 
     public void setG(GUI g) {
         this.g = g;
     }
+
+    public void setBurn(boolean burn) {
+        this.burn = burn;
+    }
+    
 
     public boolean isRan() {
         return ran;
@@ -130,6 +136,10 @@ public class Forest extends JPanel {
                         // tree is burn
                         if (random(numprobburn) == true) {
                             tree[i][j].setState(5);
+                            // tree burn 2 time
+                            if(burn == true){
+                            tree[i][j].setstep(1);
+                        }
                         // random young to old tree    
                         } else {
                             tree[i][j].setState((int) (Math.random() * 4 + 1));
@@ -143,6 +153,11 @@ public class Forest extends JPanel {
                     // set burn
                     if (i == numTree / 2 && j == numTree / 2) {
                         tree[i][j].setState(5);
+                        // tree burn two time
+                        if(burn == true){
+                        tree[i][j].setstep(1);
+                        }
+                        
                     }
                     // set border
                     else if (i == 0 || i == numTree - 1 || j == 0 || j == numTree - 1) {

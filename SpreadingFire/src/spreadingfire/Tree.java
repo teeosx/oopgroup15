@@ -20,10 +20,12 @@ public class Tree {
     public static  final int BURN2 = 6;
     private int step;
     private int state;
+    private int lightstep;
  
     public Tree(){
         state = TREE1;
         step = 0;
+        lightstep = 0;
     }
 
     public void setState(int state) {
@@ -55,4 +57,16 @@ public class Tree {
     // use for make tree evolution young - old    
         this.state += 1;
     }
+
+    public int getLightstep() {
+        return lightstep;
+    }
+
+    public void setLightstep(int lightstep) {
+        this.lightstep = lightstep;
+    }
+    public void stepLightDown() {
+        lightstep -= 1;
+    }
+    
 }
