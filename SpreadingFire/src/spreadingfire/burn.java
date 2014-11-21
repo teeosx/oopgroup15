@@ -115,9 +115,7 @@ public class burn {
                         
                         if (lightsound == true && lightcnt == 0 ) {
                             try {
-                                String gongFile = "/Users/Game/GitHub/oopgroup15/SpreadingFire/src/spreadingfire/Sound/thunder-03.wav";
-                                InputStream in = new FileInputStream(gongFile);
-
+                                InputStream in = getClass().getResourceAsStream("/spreadingfire/Sound/thunder-03.wav");
                                 // create an audiostream from the inputstream
                                 AudioStream audioStream = new AudioStream(in);
 
