@@ -331,7 +331,7 @@ public class burn {
     }
     // for it burn or lighting or grow or not
     private boolean random(int a) {
-        int rnd = (int) (Math.random() * 99);
+        int rnd = (int) (Math.random() * 99+1 );
         if (rnd <= a) {
             return true;
 
