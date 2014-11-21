@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Tee
  */
 public class Forest extends JPanel {
     

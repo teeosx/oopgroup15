@@ -7,7 +7,7 @@ package spreadingfire;
 //123456788900765432
 /**
  *
- * @author Tee
+ * @author Gvb123 Password hello
  */
 public class Fireforest  {
     Tree[][] tree;

@@ -19,8 +19,8 @@ public class burn {
 
     Forest f = Fireforest.forest;
     boolean check[][] = new boolean[f.getNumTree()][f.getNumTree()];
-    private boolean lighting , burntwo , grow , stop , lightingspread;
-    private int cnt , addcnt , windlevel , numprobgrow , numproblight , numprob , winddirection;
+    private boolean lighting , burntwo, grow , stop , lightingspread , lightsound;
+    private int cnt , addcnt , windlevel , numprobgrow , numproblight , numprob , winddirection , lightcnt;
     GUI g;
 
     public void setLighting(boolean lighting) {
@@ -31,13 +31,14 @@ public class burn {
         this.burntwo = burntwo;
     }
     
-    public void setGrow(boolean grow) {
-        this.grow = grow;
-    }
-
     public void setStop(boolean stop) {
         this.stop = stop;
     }
+
+    public void setGrow(boolean grow) {
+        this.grow = grow;
+    }
+    
 
     public void setWindlevel(int windlevel) {
         this.windlevel = windlevel;
@@ -64,6 +65,11 @@ public class burn {
     public void setLightingspread(boolean lightingspread) {
         this.lightingspread = lightingspread;
     }
+
+    public void setLightsound(boolean lightsound) {
+        this.lightsound = lightsound;
+    }
+    
     
     
     // check program finish or not
@@ -71,10 +77,11 @@ public class burn {
         for (int i = 0; i < f.getNumTree(); i++) {
             for (int j = 0; j < f.getNumTree(); j++) {
                 // when button stop on program stop
-                if (stop == true) {
+                if (stop == true){ 
                     return true;
                 // when have burning tree or have lighting button on or grow tree button on program will run
-                } else if (f.tree[i][j].getState() >= 5 || lighting == true || grow == true) {
+                } else if (f.tree[i][j].getState() >= 5 || (lighting == true && f.tree[i][j].getState() >= 1)
+                         ) {
                     return false;
                 }
             }
@@ -106,9 +113,9 @@ public class burn {
                     // this when problight * probcatch true tree burn
                     if (random(numproblight * numprob / 100) == true) {
                         
-                        if (g.lightsound == true) {
+                        if (lightsound == true && lightcnt == 0 ) {
                             try {
-                                String gongFile = "/Users/Game/GitHub/oopgroup15/SpreadingFire/src/spreadingfire/thunder-03.wav";
+                                String gongFile = "/Users/Game/GitHub/oopgroup15/SpreadingFire/src/spreadingfire/Sound/thunder-03.wav";
                                 InputStream in = new FileInputStream(gongFile);
 
                                 // create an audiostream from the inputstream
@@ -116,13 +123,14 @@ public class burn {
 
                                 // play the audio clip with the audioplayer class
                                 AudioPlayer.player.start(audioStream);
+                                lightcnt++;
 
                             } catch (Exception e) {
                                 JOptionPane.showMessageDialog(null, "File not Found");
                             }
                         }
                         // when lighting spread spread on step 2,3 and 4 and 5 go to empty
-                        else if (lightingspread == true) {
+                        if (lightingspread == true) {
                             
                             f.tree[i][j].setState(5);
                             f.tree[i][j].setLightstep(5);
@@ -209,17 +217,18 @@ public class burn {
 
         }
     }
-
+    // check south
     private void south(int x, int y) {
+        // wind = south and wind level low or high
         if (winddirection == 3 && windlevel > 0) {
-
+            // south 2 cell is tree and rand true will burn 2
             if (f.tree[x][y + 1].getState() >= 1 && f.tree[x][y + 1].getState() < 5
                     && f.tree[x][y + 2].getState() >= 1 && f.tree[x][y + 2].getState() < 5
                     && random(numprob) == true) {
 
                 set(x, y + 1);
                 set(x, y + 2);
-
+            // only south 1 cell is tree will burn 1
             } else if (f.tree[x][y + 1].getState() >= 1 && f.tree[x][y + 1].getState() < 5
                     && f.tree[x][y + 2].getState() < 1 && f.tree[x][y + 2].getState() >= 5
                     && random(numprob) == true) {
@@ -227,9 +236,10 @@ public class burn {
                 set(x, y + 1);
 
             }
-
+        // wind = north and windlevel high dont do sout
         } else if (winddirection == 1 && windlevel == 2) {
-
+        
+        // normal burn 1 cel south
         } else {
             if (f.tree[x][y + 1].getState() >= 1 && f.tree[x][y + 1].getState() < 5
                     && random(numprob) == true) {
@@ -237,20 +247,20 @@ public class burn {
                 set(x, y + 1);
 
             }
-
         }
     }
-
+    // check west
     private void west(int x, int y) {
+        // winddirection = west and windlevel low or high
         if (winddirection == 4 && windlevel > 0) {
-
+            // 2 left cell is tree will burn 2
             if (f.tree[x - 1][y].getState() >= 1 && f.tree[x - 1][y].getState() <= 5
                     && f.tree[x - 2][y].getState() >= 1 && f.tree[x - 2][y].getState() <= 5
                     && random(numprob) == true) {
 
                 set(x - 1, y);
                 set(x - 2, y);
-
+            // only 1 left cell is tree will burn 1
             } else if (f.tree[x - 1][y].getState() >= 1 && f.tree[x - 1][y].getState() <= 5
                     && f.tree[x - 2][y].getState() < 1 && f.tree[x - 2][y].getState() >= 5
                     && random(numprob) == true) {
@@ -258,9 +268,10 @@ public class burn {
                 set(x - 1, y);
 
             }
-
+        // winddirection = east and windlevel high dont do anything
         } else if (winddirection == 2 && windlevel == 2) {
-
+       
+            // normal burn left cell if it a tree and random = true
         } else {
             if (f.tree[x - 1][y].getState() >= 1 && f.tree[x - 1][y].getState() < 5
                     && random(numprob) == true) {
@@ -268,20 +279,20 @@ public class burn {
                 set(x - 1, y);
 
             }
-
         }
     }
-
+    // check east
     private void east(int x, int y) {
+        // winddirection = east and windlevel low or high
         if (winddirection == 2 && windlevel > 0) {
-
+            // 2 right cell is tree will burn 2
             if (f.tree[x + 1][y].getState() >= 1 && f.tree[x + 1][y].getState() < 5
                     && f.tree[x + 2][y].getState() >= 1 && f.tree[x + 2][y].getState() < 5
                     && random(numprob) == true) {
 
                 set(x + 1, y);
                 set(x + 2, y);
-
+            // only 1 right cell is tree
             } else if (f.tree[x + 1][y].getState() >= 1 && f.tree[x + 1][y].getState() < 5
                     && f.tree[x + 2][y].getState() < 1 && f.tree[x + 2][y].getState() >= 5
                     && random(numprob) == true) {
@@ -289,9 +300,9 @@ public class burn {
                 set(x + 1, y);
 
             }
-
+        // winddirection = west and windlevel high dont do right cell
         } else if (winddirection == 4 && windlevel == 2) {
-
+        // right cell burn 1
         } else {
             if (f.tree[x + 1][y].getState() >= 1 && f.tree[x + 1][y].getState() < 5
                     && random(numprob) == true) {
@@ -299,30 +310,28 @@ public class burn {
                 set(x + 1, y);
 
             }
-
         }
     }
-
+    // to set tree burn
     private void set(int x, int y) {
-
+        // when tree have 2 time for burn
         if (burntwo == true) {
             if (check[x][y] == false){
             f.tree[x][y].setState(5);
             f.tree[x][y].setstep(1);
             check[x][y] = true;
             }
+        // normally burn
         } else {
             if (check[x][y] == false) {
                 f.tree[x][y].setState(5);
                 check[x][y] = true;
             }
-            
-
         }
     }
-
+    // for it burn or lighting or grow or not
     private boolean random(int a) {
-        int rnd = (int) (Math.random() * 99 + 1);
+        int rnd = (int) (Math.random() * 99);
         if (rnd <= a) {
             return true;
 
@@ -338,12 +347,13 @@ public class burn {
                 check[i][j] = false;
             }
         }
+        lightcnt = 0;
     }
 
     public void setG(GUI g) {
         this.g = g;
     }
-
+    // run 
     public void runfire() {
         //int cnt = 0;
         try {
@@ -356,12 +366,12 @@ public class burn {
         }
 
     }
-
+    // run program step by step
     public void step() {
         try {
             search();
             reset();
-
+            //for step in finish
             if (finish() == true) {
                 if (addcnt == 0) {
                     addcnt++;
